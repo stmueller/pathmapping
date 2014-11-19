@@ -1,0 +1,9 @@
+Package: pathmapping
+Type: Package
+Title:  Path Mapping Algorithms to Compute Correspondence Between Paths
+Version: 1.0
+Date: 2014-10-16
+Author: Shane T. Mueller & Brandon S. Perelman
+Maintainer: Shane T. Mueller <shanem@mtu.edu>
+Description: Functions to compute and display the area between paths, and a least-cost mapping between paths, using a dynamic-programming optimization approach. For details, see Mueller, Perelman, and Veinott. (under review). An optimization approach for mapping and measuring the divergence and correspondence between paths, Behavior Research Methods. For example figures and other information, visit {https://sites.google.com/a/mtu.edu/mapping/}.
+License: GPL (>=2)
