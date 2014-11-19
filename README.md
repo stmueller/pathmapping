@@ -13,3 +13,7 @@ This package allows you to measure the area-based deviation between pairs of pat
 More details are found at:
 
 https://sites.google.com/a/mtu.edu/mapping/
+
+Source code repository at:
+
+https://github.com/stmueller/pathmapping/
