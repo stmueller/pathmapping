@@ -2,7 +2,7 @@ Package: pathmapping
 Type: Package
 Title:  Path Mapping: Compute Deviation and Correspondence Between Paths
 Version: 1.0
-Date: 2014-10-16
+Date: 2014-11-19
 Author: Shane T. Mueller & Brandon S. Perelman
 Maintainer: Shane T. Mueller <shanem@mtu.edu>
 Description: Functions to compute and display the area-based deviation between paths and to compute a mapping based on minimizing area and distance-based cost.  For details, see: Mueller, Perelman, and Veinott. (under review). An optimization approach for mapping and measuring the divergence and correspondence between paths, Behavior Research Methods. For example figures and other information, visit {https://sites.google.com/a/mtu.edu/mapping/}. Source code is available at {https://github.com/stmueller/pathmapping/}.
