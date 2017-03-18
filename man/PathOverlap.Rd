@@ -51,7 +51,7 @@ inflated by that proportion.
 Return value is a number between 0 and 1.  Values below 0.5 are difficult, because the average overlap of the two paths is found.  Thus, even if one path has 0 overlap, the other is likely to have an overlap near 1.0, resulting in an average of 0.5.
 }
 \references{
-See Mueller et al., (under review). \url{https://sites.google.com/a/mtu.edu/mapping/}
+See Mueller et al., (2016). \url{https://sites.google.com/a/mtu.edu/mapping/}
 }
 \author{
 Shane T. Mueller and Brandon Perelman

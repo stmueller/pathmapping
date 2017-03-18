@@ -1,10 +1,17 @@
+
+
 SimplifyPath <-
-function(path,tolerance=.075,faster=T,verbose=F,plot=F)
+function(path,tolerance=.075,truncate=F,faster=T,verbose=F,plot=F)
 {
 
   if(plot)
     plot(path,col="grey70")
 
+    if(truncate)
+    {
+        path <- round(path,truncate)
+    }
+    
   ##keepres
   ldist <- PathDist(path)
   cont <- 1

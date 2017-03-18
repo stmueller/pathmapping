@@ -41,13 +41,13 @@ line segment does not intersect the segment, the function will return an end poi
 a point-pair (x,y)
 }
 \references{
-See Mueller et al., (under review). \url{https://sites.google.com/a/mtu.edu/mapping/}
+See Mueller et al., (2016). \url{https://sites.google.com/a/mtu.edu/mapping/}
 }
 \author{
 Shane T. Mueller and Brandon Perelman
 }
 \note{
-Uses LineMagnitude, also supplied by the Path Mapping package.
+Uses LineMagnitude, also supplied by the pathmapping package.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

@@ -2,6 +2,7 @@
 \alias{surveyors}
 \alias{surveyors.3}
 \alias{surveyors.4}
+\alias{shoelace}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Surveyor's Function
 }
@@ -12,6 +13,7 @@ Computes the area of a polygon using the Surveyor's function.  Polygon \code{pol
 surveyors(poly,usedet=FALSE)
 surveyors.3(poly)
 surveyors.4(poly)
+shoelace(poly)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -39,13 +41,23 @@ routes to the specialized function, which appears to add 20\% overhead.
 If you know that you are dealing with a trigon or a quadrilateral, you
 can cut down time by a small amount.  A compiled version might offer
 even more efficiency.
+
+The shoelace function is a compiled c function that implements the
+surveyor's formula.  It is not restricted to 3/4-gons like surveyors.3
+and surveyors.4. It takes about 1.5x as long as the special-purpose
+surveyor's formula for 3 and 4 points, but it is not restricted on the
+number of points, so is a fast replacement for the much slower
+surveyors() function. Consequently, it is not used in the library directly.
+It could be used for alternate cost functions.  Note that like all
+surveyor's formula implementations, it will not handle cross-over paths appropriately.
+
 }
 \value{
 returns a measure of area.
 }
 \references{
 
-See Mueller et al., (under review). \url{https://sites.google.com/a/mtu.edu/mapping/}
+See Mueller et al., (2016). \url{https://sites.google.com/a/mtu.edu/mapping/}
 and
 B. Braden. "The Surveyor's Area Formula". The College Mathematics Journal, vol. 17, no. 4, pp. 326-337, 1986.
 
@@ -67,12 +79,17 @@ surveyors(poly)
 #system.time(for(i in 1:50000)surveyors(poly,usedet=TRUE))
 #system.time(for(i in 1:50000)surveyors(poly))
 #system.time(for(i in 1:50000)surveyors.3(poly))
+#system.time(for(i in 1:50000)shoelace(poly))
 # Profiling Test for 4-gon
 poly2 <- rbind(c(1.1,1.2),c(2.2,1.3),c(4.0,4.25),c(1.3,3.9))
 #system.time(for(i in 1:50000)surveyors(poly2,usedet=TRUE))
 #system.time(for(i in 1:50000)surveyors(poly2))
 #system.time(for(i in 1:50000)surveyors.4(poly2))
+#system.time(for(i in 1:50000)shoelace(poly2))
 
+poly3 <- cbind(runif(20),runif(20))
+#system.time(for(i in 1:50000)surveyors(poly3,usedet=TRUE))
+#system.time(for(i in 1:50000)shoelace(poly3))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

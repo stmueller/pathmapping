@@ -1,4 +1,5 @@
 
+
 ## This cost function computes the 'cost'  of the polygon
 ## typically somehow related to the area.
 ##

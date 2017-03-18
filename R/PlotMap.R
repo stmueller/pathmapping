@@ -1,3 +1,5 @@
+#importFrom("base","plot","points","polygon","lines","title")
+
 PlotMap <-
 function(mapping,cols=c("grey40"),linecol="grey25",xlim=NA,ylim=NA,...)
   {

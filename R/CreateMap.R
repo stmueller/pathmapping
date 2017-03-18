@@ -1,3 +1,4 @@
+
 CreateMap <-
 function(xy1.1,xy2.1,
          plotgrid = F,
@@ -141,7 +142,8 @@ function(xy1.1,xy2.1,
 
 
     chain <- matrix(0,nrow=2*(l1+l2))
-    bestpath <- array(0,c(l1.b,l2.b,2),c("d1","d2","xy"))
+
+    bestpath <- array(0,c(l1.b,l2.b,2),dimnames=list(NULL,NULL, c("x","y")))
 
     if(verbose) print("Computing paths:")
     id <- 1

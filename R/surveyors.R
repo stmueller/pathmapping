@@ -38,6 +38,19 @@ function(poly)
      poly[4,1]*poly[3,2] - poly[1,1]*poly[4,2])/2
   }
 
+
+shoelace <- function(poly)
+{
+    x <- poly[,1]
+    y <- poly[,2]
+    out <- .C('shoelace',as.double(x),
+              as.double(y),
+              length(x),
+              ans=as.double(0))
+    return(out$ans)
+}
+
+
 ## Profiling test:
 #  poly <- rbind(c(1.1,1.2),c(2.1,3.3),c(4.1,1.2))
 #system.time(for(i in 1:50000)surveyors(poly,usedet=T))

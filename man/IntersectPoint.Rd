@@ -27,7 +27,7 @@ IntersectPoint(A, B, C)
 returns a value which is the proportion of the length of \code{AB} where \code{AC} proects onto the line defined by AB. If the return value is between 0 and 1, the point is opposite the line segment.  If negative, it falls on the \code{A} side of \code{AB}; if greater than 1, it falls to the \code{B} side of \code{AB}.
 }
 \references{
-See Mueller et al., (under review). \url{https://sites.google.com/a/mtu.edu/mapping/}
+See Mueller et al., (2016). \url{https://sites.google.com/a/mtu.edu/mapping/}
 }
 \author{
 Shane T. Mueller and Brandon Perelman

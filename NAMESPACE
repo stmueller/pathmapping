@@ -1,1 +1,6 @@
 exportPattern("^[[:alpha:]]+")
+useDynLib(pathmapping)
+export(shoelace)
+importFrom("graphics", "abline", "arrows", "axis", "lines", "par",
+             "plot", "points", "polygon", "text", "title")
+

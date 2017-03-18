@@ -17,3 +17,14 @@ https://sites.google.com/a/mtu.edu/mapping/
 Source code repository at:
 
 https://github.com/stmueller/pathmapping/
+
+
+# prepdat 1.0.1: March 2017
+
+-  Documentation improved.
+- Fixed a problem with array dimension names in CreateMap
+- Added compiled function shoelace formula.  This is not used, because it is a bit slower than special-purpose surveyor's formulae for 3/4 points, but is a lot faster than the general-purpose surveyor's formula.
+- Version number updated.
+
+# prepdat 1.0: 2014/2015.
+- First release

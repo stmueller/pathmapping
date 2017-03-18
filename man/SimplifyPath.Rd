@@ -8,7 +8,10 @@ Simplify a path
 This function takes a path and removes points that impact the shape of the path less than a tolerance value, which is a scaled measure of degree deviation from removing a path. It is based on an algorithm described by Latecki & Lakaemper.
 }
 \usage{
-SimplifyPath(path, tolerance = 0.075, faster = T, 
+SimplifyPath(path,
+             tolerance = 0.075,
+             truncate=F,
+             faster = T, 
              verbose = F, plot = F)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -16,6 +19,12 @@ SimplifyPath(path, tolerance = 0.075, faster = T,
   \item{path}{
 a 2-column matrix of x,y points
 }
+\item{truncate}{Number of digits to round values to.  If FALSE (the
+  default), there is no rounding.  If another value, the value is used
+  as the \code{digits} argument of  \code{\link{round}}
+  to use to truncate the precision of the path.  This can help
+  simplify the path by rounding to a known precision level.
+  }
   \item{tolerance}{
    a tolerance threshold; any point that does not impact the shape of the path more than this is removed. For this, smaller values remove fewer points.  Depending on the complexity of the path, values from 0.01 to 0.1 may be good starting points. 
 }
@@ -34,7 +43,7 @@ Returns a path with redundant points removed.
 }
 
 \references{
-See Mueller et al., (under review). \cr
+See Mueller et al., (2016). \cr
 and\cr
 L. J. Latecki and R. Lakaemper. Convexity Rule for Shape 
 Decomposition Based on Discrete Contour Evolution. Computer Vision

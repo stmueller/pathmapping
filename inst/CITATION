@@ -1,7 +1,7 @@
 citHeader("To cite package 'pathmapping' in publications use:") 	
 year <- 2014
 vers <- paste("R package version", meta$Version)
-title <- "pathmapping: Software for Determining the Divergence and Mapping Between Two Paths."
+title <- "Software for Determining the Divergence and Mapping Between Two Paths."
 
 citEntry(entry="Manual",
          title = title,
@@ -22,6 +22,9 @@ citEntry(entry="Article",
 	       	 	    as.person("Brandon Perelman"),
 			    as.person("Elizabeth S. Veinott")),
 	journal="Behavior Research Methods",
-	year = "Under Review",
-	textVersion = "Mueller, S. T., Perelman, B., and Veinott, E. S. (under review).  An optimization approach for measuring the divergence and correspondence between paths.  Preprint available at http://sites.google.com/a/mtu.edu/mapping"
+	year = "2016",
+        doi = "10.3758/s13428-015-0562-7",
+        pages = "53-71.",
+         volume = 48,
+	textVersion = "Mueller, S. T., Perelman, B. S., & Veinott, E. S. (2016). An optimization approach for mapping and measuring the divergence and correspondence between paths. Behavior research methods, 48(1), 53-71."
 )
