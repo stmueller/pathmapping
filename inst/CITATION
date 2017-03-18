@@ -1,5 +1,5 @@
 citHeader("To cite package 'pathmapping' in publications use:") 	
-year <- 2014
+year <- 2017
 vers <- paste("R package version", meta$Version)
 title <- "Software for Determining the Divergence and Mapping Between Two Paths."
 
