@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-useDynLib(pathmapping)
+useDynLib(pathmapping,.registration=TRUE)
 export(shoelace)
 importFrom("graphics", "abline", "arrows", "axis", "lines", "par",
              "plot", "points", "polygon", "text", "title")

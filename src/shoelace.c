@@ -1,12 +1,33 @@
 #include<stdio.h>
 #include <R.h>
+#include <Rinternals.h>
+#include <R_ext/Rdynload.h>
+
 
 
 //This calculates the area of a simple polygon, using the 'shoelace' formula.
 //Implementation adapted from description here:
 //http://www.dreamincode.net/forums/topic/367070-Area-Of-Polygon/
 
+void shoelace(double * x, double * y,
+             unsigned int * length, double * ans);
 
+
+
+static const R_CMethodDef CEntries[]  = {
+  {"shoelace", (DL_FUNC) &shoelace,4},
+  {NULL, NULL, 0}
+};
+
+
+void R_init_shoelace(DllInfo*info)
+{
+  R_registerRoutines(info, CEntries, NULL, NULL, NULL);
+  R_useDynamicSymbols(info, FALSE);
+  R_forceSymbols(info,  TRUE);
+
+  R_RegisterCCallable("pathmapping", "shoelace", (DL_FUNC)shoelace);
+}
 
 // Function that calculates the absolute value
 // of a double type.
@@ -18,9 +39,8 @@ double _Abs(double num)
 }
 
 
+
 /*
-void shoelace(double ** x, double ** y,
-             unsigned int * length, double * ans);
 
  Interface for GNU implementation below
  * 
@@ -32,12 +52,13 @@ void shoelace(double ** x, double ** y,
 
 void shoelace(double * x, 
 	       double * y,
-               unsigned int * length, double * ans)
+               unsigned int * length,
+	      double * ans)
 {
 
 
   
-  
+
   double area = 0; // Total Area
   double diff = 0; // Difference Of Y{i + 1} - Y{i - 1}
   unsigned int last = *length -1 ; // Size Of Vector - 1
