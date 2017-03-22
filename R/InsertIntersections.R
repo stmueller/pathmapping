@@ -128,7 +128,12 @@ function(path1,path2,insertopposites=T,verbose=F)
                                   
                                   
                                   if(intprop>0 & intprop<1)
-                                      {
+                                  {
+
+                                      ##this code results in a warning:
+                                      ##     Warning in (xy2[l2keyb[j], ] - xy2[l2keya[j], ]) * intprop :
+                                      ##  Recycling array of length 1 in vector-array arithmetic is deprecated.
+                                      ##  Use c() or as.vector() instead.
                                           newpoint <- xy2[l2keya[j],] +
                                               (xy2[l2keyb[j],]-xy2[l2keya[j],])*intprop
                                           
@@ -145,9 +150,17 @@ function(path1,path2,insertopposites=T,verbose=F)
                                                             unlist(xy2[l2keya[j],]))
                                   
                                   if(intprop>0  & intprop<1)
-                                      {
+                                  {
+
+                                      ##this code results in a warning:
+                                      ##     Warning in (xy2[l2keyb[j], ] - xy2[l2keya[j], ]) * intprop :
+                                      ##  Recycling array of length 1 in vector-array arithmetic is deprecated.
+                                      ##  Use c() or as.vector() instead.
+                                      
                                           newpoint <- xy1[l1keya[i],] +
                                               (xy1[l1keyb[i],]-xy1[l1keya[i],])*intprop
+
+                                      
                                           addtopath1.2 <- rbind(addtopath1.2,c(i/2+intprop,newpoint))
                                       }
                               }

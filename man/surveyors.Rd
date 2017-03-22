@@ -4,10 +4,12 @@
 \alias{surveyors.4}
 \alias{shoelace}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Surveyor's Function
+\title{The Surveyor's Formula
 }
 \description{
-Computes the area of a polygon using the Surveyor's function.  Polygon \code{poly} is a matrix with two columns, where each row specifies a consecutive vertex of the polygon.
+Computes the area of a polygon using the so-called Surveyor's
+formula, with special-purpose faster versions for 3- and 4-gons, and a
+compiled version implemented via the 'shoelace' formula.
 }
 \usage{
 surveyors(poly,usedet=FALSE)
@@ -18,7 +20,7 @@ shoelace(poly)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{poly}{
-A 2-column matrix containing the vertices of a polygon.
+A 2-column matrix containing the vertices of a polygon (x and y coordinates). 
 }
 \item{usedet}{
   TRUE/FALSE variable, if T, will force the use of the true surveyor's
@@ -31,7 +33,7 @@ This computes the area of a polygon using the so-called 'surveyor's' formula.  I
 
 The general surveyor's formula is pretty inefficient. We primarily
 (probably exclusively) use it for 2-, 3-, and 4-gons, and so there are
-special-ppurpose functions defined as \code{surveyors.3} and \code{surveyors.4} that
+special-purpose functions defined as \code{surveyors.3} and \code{surveyors.4} that
 are used in these cases that are about 15-20x faster than the general
 one, using the so-called 'shoelace' formula.
 
@@ -39,17 +41,20 @@ Calls to this function account for a lot of the efficiency of the
 entire algorithm.  Currently, surveyors tests the size of the n-gon and
 routes to the specialized function, which appears to add 20\% overhead.
 If you know that you are dealing with a trigon or a quadrilateral, you
-can cut down time by a small amount.  A compiled version might offer
+can cut down time by a small amount. 
 even more efficiency.
 
 The shoelace function is a compiled c function that implements the
-surveyor's formula.  It is not restricted to 3/4-gons like surveyors.3
-and surveyors.4. It takes about 1.5x as long as the special-purpose
+surveyor's formula for polygons of any size.  It is not restricted to 3-
+or 4-gons like surveyors.3
+and surveyors.4, but is still slightly slower than these functions for
+3- and 4-gons because of the overhead of calling the compiled function.
+It takes about 1.5x as long as the special-purpose
 surveyor's formula for 3 and 4 points, but it is not restricted on the
 number of points, so is a fast replacement for the much slower
-surveyors() function. Consequently, it is not used in the library directly.
-It could be used for alternate cost functions.  Note that like all
-surveyor's formula implementations, it will not handle cross-over paths appropriately.
+surveyors() function. Consequently, it is not currently used in the library directly.
+ Note that like all surveyor's formula implementations, it will not
+ handle cross-over paths appropriately.
 
 }
 \value{

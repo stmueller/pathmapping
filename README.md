@@ -19,6 +19,8 @@ Source code repository at:
 https://github.com/stmueller/pathmapping/
 
 
+Mueller, S. T., Perelman, B. S., & Veinott, E. S. (2016). An optimization approach for mapping and measuring the divergence and correspondence between paths. Behavior research methods, 48(1), 53-71. <DOI:10.3758/s13428-015-0562-7>.
+
 # prepdat 1.0.1: March 2017
 
 -  Documentation improved.

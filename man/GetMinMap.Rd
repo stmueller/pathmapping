@@ -54,7 +54,7 @@ Shane T. Mueller and Brandon Perelman
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See Also \code{\link{CreateMap}}, ~~~
+See Also \code{\link{CreateMap}}, 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
