@@ -20,13 +20,15 @@ https://github.com/stmueller/pathmapping/
 
 
 Mueller, S. T., Perelman, B. S., & Veinott, E. S. (2016). An optimization approach for mapping and measuring the divergence and correspondence between paths. Behavior research methods, 48(1), 53-71. <DOI:10.3758/s13428-015-0562-7>.
+# pathmapping 1.0.2: March 2017
+Minor fixes to address compilation on sparc, fix some documentation, and fix a return value issue that will apparently be depracated in the future.
 
-# prepdat 1.0.1: March 2017
+# pathmapping 1.0.1: March 2017
 
 -  Documentation improved.
 - Fixed a problem with array dimension names in CreateMap
 - Added compiled function shoelace formula.  This is not used, because it is a bit slower than special-purpose surveyor's formulae for 3/4 points, but is a lot faster than the general-purpose surveyor's formula.
 - Version number updated.
 
-# prepdat 1.0: 2014/2015.
+# pathmapping 1.0: 2014/2015.
 - First release
