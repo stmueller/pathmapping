@@ -20,8 +20,14 @@ https://github.com/stmueller/pathmapping/
 
 
 Mueller, S. T., Perelman, B. S., & Veinott, E. S. (2016). An optimization approach for mapping and measuring the divergence and correspondence between paths. Behavior research methods, 48(1), 53-71. <DOI:10.3758/s13428-015-0562-7>.
+
+# pathmapping 1.0.3: November 2023
+- Fix improper c R_init_pathmapping() init function to expose compiled functions.
+- Compiled version of Cost_Area that is now used by default--approximately 60% speed-up.
+
+
 # pathmapping 1.0.2: March 2017
-Minor fixes to address compilation on sparc, fix some documentation, and fix a return value issue that will apparently be depracated in the future.
+Minor fixes to address compilation on sparc, fix some documentation, and fix a return value issue that will apparently be deprecated in the future.
 
 # pathmapping 1.0.1: March 2017
 

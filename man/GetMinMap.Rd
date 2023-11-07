@@ -8,7 +8,7 @@ Gets least-distance mapping among the minimum-area mappings.
 Finds minimum linear-distance mapping among the least-cost area-based mappings between paths.
 }
 \usage{
-GetMinMap(mapping, leftbias=T, verbose = F )
+GetMinMap(mapping, leftbias=T, verbose = F, costfn=Cost_Area)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,6 +23,10 @@ Boolean value determining whether to prefer left or upper node connections first
 Whether intermediate output should be printed.
 %%     ~~Describe \code{verbose} here~~
 }
+  \item{costfn}{
+      \code{costfn} is the cost function to use
+    }
+
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

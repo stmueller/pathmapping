@@ -49,7 +49,7 @@ function(path1,path2,insertopposites=T,verbose=F)
                 keep1 <- rbind(keep1,c(-1,intr))
                 keep2 <- rbind(keep2,c(-1,intr))
                 
-                print(paste("Intersection found at ",intr[1],intr[2]))
+                if(verbose)print(paste("Intersection found at ",intr[1],intr[2]))
             }
       }
   }

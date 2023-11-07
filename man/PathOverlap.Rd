@@ -15,14 +15,17 @@ average of the proportion of path1 that is in path2 and the proportion
 of path2 that is in path1.
 }
 \usage{
-PathOverlap(mapping)
+PathOverlap(mapping,costfn=Cost_Area)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{mapping}{
 %%     ~~Describe \code{mapping} here~~
-\code{mapping} is the output of \code{CreateMap()}.  
-}
+      \code{mapping} is the output of \code{CreateMap()}.  
+    }
+    \item{costfn}{
+         \code{costfn} is the cost function to use
+      }
 
 }
 \details{

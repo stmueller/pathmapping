@@ -8,7 +8,7 @@ Create a mapping between paths
 Given two paths, this creates a mapping that minimizes the 
 }
 \usage{
-CreateMap(xy1.1, xy2.1, plotgrid = F,costfn=Cost.area,
+CreateMap(xy1.1, xy2.1, plotgrid = F,costfn=Cost_Area,
          nondecreasingos = F, verbose = F, insertopposites = T)
 }
 %- maybe also 'usage' for other objects documented here.

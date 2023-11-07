@@ -1,0 +1,25 @@
+##This returns a data frame/matrix identifying the mapping point
+##of each node in one path of a mapping to the other.
+GetMappingStats <- function(mapping)
+    {
+  
+                    p1dist <- PathDist(as.matrix(mapping$path1))
+                    p2dist <- PathDist(as.matrix(mapping$path2))
+                    print("gettingmappingstats")
+                    
+                    ol <- PathOverlap(mapping)
+                    dev <- mapping$deviation
+                    pdev <- sqrt(dev/(p1dist*p2dist))
+                    
+                    results <- list(length1 = p1dist,
+                                    length2 = p2dist,
+                                    overlap = ol,
+                                    deviation=dev,
+                                    devperunit = dev/sqrt(p1dist*p2dist),
+                                    percentdev = pdev,
+                                    adjusteddev = pdev/ol)
+      
+                    return(results)
+                        
+      }
+

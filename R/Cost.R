@@ -17,11 +17,30 @@ Cost <- function(xy1,xy2,i,j,pi,pj,opposite,costfn=Cost.area)
   costfn(xy1,xy2,i,j,pi,pj,opposite)
 }
 
+
+Cost_Area <- 
+function(xy1,xy2,i,j,pi,pj,opposite)
+{
+
+    out <- .Call('Cost_Area_c',
+                 xy1,
+                 xy2,
+                 as.integer(i),as.integer(j),
+                 as.integer(pi),as.integer(pj),
+                 (opposite));
+
+    return(out)
+}
+
+
+
 Cost.area <-
 function(xy1,xy2,i,j,pi,pj,opposite)
 {
 
-
+    #    print("r-code calling Cost.area");
+    #print(paste(i,j,pi,pj))
+    
   ## The cost of any unconnected transition is infinite.
   if(pi<=0 | pj<=0 | !connected(pi,pj,i,j))#
     {
@@ -50,24 +69,35 @@ function(xy1,xy2,i,j,pi,pj,opposite)
           point <- unlist(xy2[l2key,])  ##Point on j series
           vecdelt <- veccurr-vecstart
           vecstart1 <- vecstart + opp * vecdelt
+
+            #print(c(vecstart1,veccurr,point,opp))
+            
           cost <- surveyors.3(rbind(vecstart1,
                                   veccurr,
                                   point)) 
-
+            #print(paste("PATH A",cost))
         }else if(pi==i & pj == (j-1))
           {
             ##ditto above, but with j-(j-1) segment and point i
 
             opp <- opposite[i,j-1]
             vecstart <- unlist(xy2[l2key-1,])
-            veccurr <-  unlist(xy2[l2key,])
+              veccurr <-  unlist(xy2[l2key,])
+
+              
             point <- unlist(xy1[l1key,])  ##Point on j series
+
+
             vecdelt <- veccurr-vecstart
             vecstart1 <- vecstart + opp * vecdelt
+
+            #print(c(vecstart1,veccurr,point,opp))
             cost <- surveyors.3(rbind(vecstart1,
                                     veccurr,
                                     point)) 
-            
+            #print(paste("PATH B",cost))
+
+              
           }else if((pi==(i-2)) &(pj ==(j-2)) )
             {
 
@@ -105,11 +135,12 @@ function(xy1,xy2,i,j,pi,pj,opposite)
                 }else{
                   cost <- cost1
                 }
-              
+                #print(paste("PATH C",cost))
             }
           else{
             ##otherwise, the cost is infinite--no legal direct path.
-            cost <- Inf
+              cost <- Inf
+              #print(paste("PATH D",cost))
           }
       
     }else if(even(i) & odd(j))
@@ -138,10 +169,13 @@ function(xy1,xy2,i,j,pi,pj,opposite)
             vecdelta <- unlist(xy1[l1keyb,])-vecstart
             newend <- vecstart + vecdelta *opp
       
-                                
+            #print(c(vecstart,newend,unlist(xy2[l2key,]),opp))
             cost <- surveyors.3(rbind(vecstart,
                                     newend,
                                     unlist(xy2[l2key,])))
+              
+             # print(paste("PATH E",cost))
+              
           }else if(pi == i & (j-2)==(pj))
             {
               ##i is even, so the i path is a segment:
@@ -177,11 +211,13 @@ function(xy1,xy2,i,j,pi,pj,opposite)
                   ##to measure the following 3-gon:
                   
                   if(opp)
-                    {
+                  {
+                      #print(c(vecprevend,vecend,point,lastpoint,opp))
                       cost <- surveyors.4(rbind(vecprevend,
                                               vecend,
                                               point,
                                               lastpoint))
+                      #print(paste("Path F: " , cost))
                       ##this is a quadrilateral, but I don't think we need to
                       ##try both mappings and do the max.  Otherwise, crossovers
                       ##would be a problem.
@@ -189,11 +225,12 @@ function(xy1,xy2,i,j,pi,pj,opposite)
 
                                     
                     }else{
-                      
+                      #print(c(vecprevend,vecend,point,lastpoint,opp))
                       cost <- surveyors.4(rbind(vecprevend,
                                               vecend,
                                               point,
                                               lastpoint))
+                       # print(paste("Path G: " , cost))
                       
                     }
                 
@@ -201,10 +238,11 @@ function(xy1,xy2,i,j,pi,pj,opposite)
                   ##if that previous point was not 'opposite', we shouldn't use this route;
                   
                   cost <- Inf
-
+              #print(paste("PATH H: ",cost))
                 }
             }else{
               cost <- Inf
+              #print(paste("PATH I: ",cost))
             }
                                  
       
@@ -237,11 +275,15 @@ function(xy1,xy2,i,j,pi,pj,opposite)
                vecstart <- unlist(xy2[l2keya,])
                vecdelta <- unlist(xy2[l2keyb,])-vecstart
                newend <- vecstart + vecdelta *opp
+
+
+               #print(c(vecstart,newend,unlist(xy1[l1key,]),opp))
                cost <- surveyors.3(rbind(vecstart,
                                        newend,
                                        unlist(xy1[l1key,])))
 
-             }else if(pj == j & (i-2)==(pi))
+               # print(paste("PATH J",cost))
+             }else if((pj == j) & ((i-2)==(pi)))
                {
                  ##j is even, so the j path is a segment:
                  ##i is odd, so it is just a single point
@@ -286,33 +328,37 @@ function(xy1,xy2,i,j,pi,pj,opposite)
                          ##this is a quadrilateral, but I don't think we need to
                          ##try both mappings and do the max.  Otherwise, crossovers
                          ##would be a problem.
-                         
+                        #print(paste("PATH K",cost))
 
                          
                        }else{
-                         
+
+
+                         #print(c(vecprevend,vecend,point,lastpoint,opp))
                          cost <- surveyors.4(rbind(vecprevend,
                                                  vecend,
                                                  point,
                                                  lastpoint))
-                      
+
+                          # print(paste("PATH L",cost))
                        }
                    }else {
                          cost <- Inf
-                    
+                          #print(paste("PATH MM",cost))
                    }
                }else{
                  ##if that previous point was not 'opposite', we shouldn't use this route;
                  
                  cost <- Inf
-                 
+                 #print(paste("PATH M",cost))
                }
                        
 
            
 
          } else {
-           cost <- Inf
+             cost <- Inf
+            #print(paste("PATH N",cost))
          }
 
   return(cost)
@@ -1035,3 +1081,29 @@ part <- function(x1,y1,x2,y2,m)
        y1^2 * (2*y1)+
        + 1/2 *(y2-y1)^3) 
   }
+
+
+## The standard method will be distorted for GPS coordinates,
+## so we need to be able to measure distance and area based on
+## the sides defined in GPS space.
+## see the followings;
+##http://www.movable-type.co.uk/scripts/latlong.html
+GPSDistance <- function(lon1,lat1,lon2,lat2)
+{
+    	
+    R = 6371000 # // meters radius of earth
+    phi1 = lat1 * pi/ 180
+    phi2 = lat2* pi / 180
+    
+    deltaphi = (lat2-lat1) * pi / 180
+    deltalambda = (lon2-lon1)* pi/ 180
+
+    a = sin(deltaphi/2) * sin(deltaphi/2) +
+        cos(phi1) * cos(phi2) *
+        sin(deltalambda/2) * sin(deltalambda/2);
+
+    c = 2 * atan2(sqrt(a), sqrt(1-a));
+
+    d = R * c;
+   return(d)    
+}

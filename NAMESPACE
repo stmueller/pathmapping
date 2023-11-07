@@ -1,6 +1,8 @@
 exportPattern("^[[:alpha:]]+")
 useDynLib(pathmapping,.registration=TRUE)
 export(shoelace)
+export(Cost_Area)
+import(ggplot2)
 importFrom("graphics", "abline", "arrows", "axis", "lines", "par",
              "plot", "points", "polygon", "text", "title")
 

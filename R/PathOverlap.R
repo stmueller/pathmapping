@@ -1,12 +1,12 @@
 ## this computes the overlap between two paths, in terms of the total 
 ## path length 
 
-PathOverlap<-function(mapping)
+PathOverlap<-function(mapping,costfn=Cost_Area)
 {
 
     ##create left-biased and right(up)-biased mappings to more easily identify the overlap.
-    left <- GetMinMap(mapping,leftbias=T)
-    right<- GetMinMap(mapping,leftbias=F)
+    left <- GetMinMap(mapping,leftbias=T,costfn=costfn)
+    right<- GetMinMap(mapping,leftbias=F,costfn=costfn)
     
     bestmapping.left <- SummarizeMapping(left)
     bestmapping.right <- SummarizeMapping(right)

@@ -5,6 +5,7 @@
 \alias{Cost.areasquared}
 \alias{Cost.weightedbydist}
 \alias{Cost.rectangular}
+\alias{Cost_Area}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{

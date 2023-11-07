@@ -1,0 +1,62 @@
+---
+title: "Using the pathmapping library to with Multidimensional Scaling and Clustering"
+author: "Shane T. Mueller (shanem@mtu.edu)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Background
+
+The pathmapping library allows you to measure the area-based dissimilarity measure between a pair of 2D paths.  This essentially involves measuring the area of the polygon made by connecting the two paths, which can be done very quickly and easily if you can guarantee that the two paths form a regular polygon (no crossing legs, self-intersections, and the like). However, in general you cannot guarantee this, and the pathmapping library can help.  Furthermore, pathmapping will allow you to identify a specific mapping of points on one path to points on another, to permit using that correspondence for additional analytics.
+
+Note that here, a path refers to the sequence of 2D points.  This could be GPS points, samples of a drawn curve, or the like.  For GPS points, any distance/area measures will be distorted by curvature of the earth, and we currently do not implement transformations for this, but it will be possible in the future. In this library, timing information is deliberately not used, and this is a general solution to path similarity and does not care 'how' the path was made.  Thus, it could be used to measure how closely a person follows driving instructions or remembers a spatial sequence.
+
+
+## Handling Data
+The mapping process is relatively efficient in that is roughly efficient in O(N*M), where N and M are the number of points in each path.  But for sampled paths such as GPS data, you may have hundreds or thousands of samples and finding path distance can still take a long time.  Consequently, you may first want to simplify a path, to reduce the number of points in the path. The SimplifyPath function will do this, using a shape evolution algorithm that simplifies the path by removing points until the shape changes significantly.
+
+
+```{r}
+#this reads in a 2 MB file of GPS paths.
+data.raw <- read.csv(
+url("https://www.datarepository.movebank.org/bitstream/handle/10255/move.381/Migration%20timing%20in%20barnacle%20geese%20%28Greenland%29%20%28data%20from%20Ko%cc%88lzsch%20et%20al.%20and%20Shariatinajafabadi%20et%20al.%202014%29.csv?sequence=3"))
+
+data <-data.frame( id=factor(paste(data.raw$tag.local.identifier,
+                       substr(data.raw$timestamp,1,4),sep="-")),
+                   long=data.raw$utm.easting,
+                   lat=data.raw$utm.northing)
+
+birdIDs <- levels(data$id)
+```
+
+To start with, we can just plot all of the GPS coordinates from the data set:
+
+
+```{r, fig.show='hold'}
+library(ggplot2)
+# library(rgdal)
+#library(maptools)
+#norw <- map_data("norway")
+ggplot(data,aes(x=long,y=lat, col=id)) + geom_line()
+
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+

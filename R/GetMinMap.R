@@ -1,5 +1,6 @@
 GetMinMap <-
-function(mapping,leftbias = T,verbose=F)
+function(mapping,leftbias = T,verbose=F,
+             costfn = Cost_Area)
   {
 
       
@@ -72,7 +73,7 @@ function(mapping,leftbias = T,verbose=F)
                           
                           ##delta measures the actual cost.  A path is legal if the actual cost between
                           ##the nodes is the same as the least-cost path.
-                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevL[1],prevL[2],mapping$opposite)
+                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevL[1],prevL[2],mapping$opposite,costfn=costfn)
                           
                           
                           ##this might go wrong if you are working with
@@ -88,7 +89,7 @@ function(mapping,leftbias = T,verbose=F)
                   if(all(prevU>0))
                       {
                           diff <- (mapping$leastcost[i,j] - mapping$leastcost[prevU[1],prevU[2]])
-                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevU[1],prevU[2],mapping$opposite)
+                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevU[1],prevU[2],mapping$opposite,costfn=costfn)
                           pathUlegal <- abs((diff-delta))<.000001
                           
                       } else {
@@ -100,7 +101,7 @@ function(mapping,leftbias = T,verbose=F)
                   if(all(prevD>0))
                       {
                           diff <- (mapping$leastcost[i,j] - mapping$leastcost[prevD[1],prevD[2]])
-                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevD[1],prevD[2],mapping$opposite)
+                          delta <- Cost(mapping$path1,mapping$path2,i,j,prevD[1],prevD[2],mapping$opposite,costfn=costfn)
                           pathDlegal <- (abs(diff-delta)<.000001)
                           
                       } else {

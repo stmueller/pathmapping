@@ -2,7 +2,7 @@
 CreateMap <-
 function(xy1.1,xy2.1,
          plotgrid = F,
-         costfn = Cost.area,
+         costfn = Cost_Area,
          nondecreasingos=F,
          verbose=F,
          insertopposites=T)

@@ -3,7 +3,10 @@
 SimplifyPath <-
 function(path,tolerance=.075,truncate=F,faster=T,verbose=F,plot=F)
 {
-
+  ##path currently will not work if path is a data.frame.
+  if(is.data.frame(path))
+    path <- as.matrix(path)
+  
   if(plot)
     plot(path,col="grey70")
 
@@ -11,7 +14,7 @@ function(path,tolerance=.075,truncate=F,faster=T,verbose=F,plot=F)
     {
         path <- round(path,truncate)
     }
-    
+  
   ##keepres
   ldist <- PathDist(path)
   cont <- 1

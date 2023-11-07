@@ -12,8 +12,8 @@ Functions to compute and display the area-based deviation between spatial paths 
 \tabular{ll}{
 Package: \tab pathmapping\cr
 Type: \tab Package\cr
-Version: \tab 1.0.1\cr
-Date: \tab 2016-03-15\cr
+Version: \tab 1.0.3\cr
+Date: \tab 2023-11-11\cr
 License: \tab GPL 2.0\cr
 }
 Computing the least-area mapping between paths.

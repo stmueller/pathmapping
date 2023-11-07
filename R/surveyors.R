@@ -38,12 +38,11 @@ function(poly)
      poly[4,1]*poly[3,2] - poly[1,1]*poly[4,2])/2
   }
 
-
 shoelace <- function(poly)
 {
     x <- poly[,1]
     y <- poly[,2]
-    out <- .C('shoelace',as.double(x),
+    out <- .C('shoelace_c',as.double(x),
               as.double(y),
               length(x),
               ans=as.double(0))
@@ -61,3 +60,24 @@ shoelace <- function(poly)
 #system.time(for(i in 1:50000)surveyors(poly2,usedet=T))
 #system.time(for(i in 1:50000)surveyors(poly2))
 #system.time(for(i in 1:50000)surveyors.4(poly2))
+
+##This is heron's formula for area of a triangle based on the length of its sides.  This
+##is useful for GPS coordinates, for whom we can more easily calculate sides the coordinates are not
+## rectangular.
+## Discussion of spherical triangle:
+##http://math.stackexchange.com/questions/328114/geometry-of-spherical-triangle
+##http://math.rice.edu/~pcmi/sphere/gos5.html
+heron  <- function(a,b,c)
+{
+    p <- a+b+c
+    sqrt(p*(p-a)*(p-b)*(p-c))
+    
+}
+
+##this finds the area of a quadrilateral based on the length of the edges, and the sum of the opposite angles.
+
+# For spherical coordinates:
+#http://mathforum.org/library/drmath/view/63767.html
+bretschneider <- function(a,b,c,d,theta)
+{
+}

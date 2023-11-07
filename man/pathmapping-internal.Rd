@@ -1,6 +1,11 @@
 \name{pathmapping-internal}
 \alias{part}
 \alias{squarederror}
+\alias{GPSDistance}
+\alias{bretschneider}
+\alias{heron}
+\alias{shoelace_c}
+\alias{Cost_Area_c}
 \title{Internal pathmapping Functions}
 \description{
  Internal pathmapping functions
